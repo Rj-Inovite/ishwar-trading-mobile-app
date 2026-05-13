@@ -1,0 +1,199 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'login.dart';
+
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Exact Colors from your 2nd image
+    const Color navyBlue = Color(0xFF003366);
+    const Color cottonGold = Color(0xFFC5A059);
+
+    return Scaffold(
+      body: Stack(
+        children: [
+          // 1. RICH GRADIENT BACKGROUND
+          Positioned.fill(
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xFFFFFFFF),
+                    Color(0xFFF2F5F8), // Soft blue-grey tint at bottom
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          // 2. LARGE DECORATIVE ORBS (The "Wao" Factor)
+          // Top Left Gold Orb
+          Positioned(
+            top: -120,
+            left: -80,
+            child: Container(
+              width: 350,
+              height: 350,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: RadialGradient(
+                  colors: [
+                    cottonGold.withOpacity(0.18),
+                    cottonGold.withOpacity(0.0),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          // Bottom Right Navy Orb
+          Positioned(
+            bottom: -180,
+            right: -100,
+            child: Container(
+              width: 450,
+              height: 450,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: RadialGradient(
+                  colors: [
+                    navyBlue.withOpacity(0.12),
+                    navyBlue.withOpacity(0.0),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          // 3. MAIN CONTENT
+          SafeArea(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Spacer(flex: 2),
+
+                  // INCREASED LOGO SIZE
+                  Container(
+                    height: 260, // Increased from 220
+                    width: 260,  // Increased from 220
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: navyBlue.withOpacity(0.12),
+                          blurRadius: 50,
+                          spreadRadius: 10,
+                          offset: const Offset(0, 15),
+                        )
+                      ],
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(35.0),
+                        child: Image.asset(
+                          'assets/images/welcome.png',
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  )
+                  .animate()
+                  .scale(
+                    duration: const Duration(milliseconds: 1000),
+                    curve: Curves.easeOutBack, // Fixed Getter Error
+                  )
+                  .shimmer(
+                    delay: const Duration(milliseconds: 1500),
+                    duration: const Duration(milliseconds: 2000),
+                  ),
+
+                  const SizedBox(height: 50),
+
+                  // BUSINESS NAME
+                  Text(
+                    "Shri Ishwar Trading",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.poppins(
+                      fontSize: 34,
+                      fontWeight: FontWeight.bold,
+                      color: navyBlue,
+                      letterSpacing: 0.5,
+                    ),
+                  ).animate().fadeIn(duration: 800.ms).slideY(begin: 0.2, end: 0),
+
+                  const SizedBox(height: 12),
+
+                  // TAGLINE
+                  Text(
+                    "Your Cotton Commodity Partner",
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: cottonGold,
+                      letterSpacing: 1.0,
+                    ),
+                  ).animate(delay: 500.ms).fadeIn(),
+
+                  const Spacer(flex: 3),
+
+                  // PREMIUM GET STARTED BUTTON
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 65,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const LoginScreen()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: navyBlue,
+                          foregroundColor: Colors.white,
+                          elevation: 10,
+                          shadowColor: navyBlue.withOpacity(0.5),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(35),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Get Started",
+                              style: GoogleFonts.poppins(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.0,
+                              ),
+                            ),
+                            const SizedBox(width: 15),
+                            const Icon(Icons.arrow_forward_ios_rounded, size: 18),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                  .animate(delay: 1000.ms)
+                  .fadeIn()
+                  .slideY(begin: 0.8, end: 0, curve: Curves.easeOutCubic),
+
+                  const SizedBox(height: 60),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
