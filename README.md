@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # devisha1
 
 A new Flutter project.
@@ -15,3 +16,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# ishwar-trading-mobile-app
+>>>>>>> 1ba1e22ab6bea704d2630ee34cedb77a835d23bb
