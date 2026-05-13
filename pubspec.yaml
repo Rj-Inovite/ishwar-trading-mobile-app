@@ -39,8 +39,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # Asset section corrected for your specific path
+  # Assets section corrected
   assets:
     - assets/images/welcome.png
-    # Alternatively, you can include the whole folder like this:
-    # - assets/images/
+  # Asset section corrected for your specific path
+  
